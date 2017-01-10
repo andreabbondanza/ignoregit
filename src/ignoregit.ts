@@ -28,19 +28,41 @@ export class IgnoreGit
         myStrings[myStrings.length] = "*" + path.extname(file);
         return this.WriteGitFile(myStrings);
     }
-    public RemoveExtension(): boolean
-    { return true; }
+    public RemoveExtension(file: string): boolean
+    {
+        let content = this.ReadGitFile();
+        let myStrings = content.split('\n');
+        let position = this.IsPresent("*" + path.extname(file), myStrings);
+        if (position <= -1)
+            return true;
+        else
+        {
+            myStrings.splice(position, 1);
+            return this.WriteGitFile(myStrings);
+        }
+    }
     public AddFile(file: string, type: IgnoreType): boolean
     {
         let content = this.ReadGitFile();
         let myStrings = content.split('\n');
-        if (this.IsPresent(file.replace(/\\/g, "/"), myStrings) > -1)
+        if (this.IsPresent(file.replace(/\\/g, "/").substring(1), myStrings) > -1)
             return true;
-        myStrings[myStrings.length] = file.replace(/\\/g, "/");
+        myStrings[myStrings.length] = file.replace(/\\/g, "/").substring(1);
         return this.WriteGitFile(myStrings);
     }
-    public RemoveFile(): boolean
-    { return true; }
+    public RemoveFile(file: string): boolean
+    {
+        let content = this.ReadGitFile();
+        let myStrings = content.split('\n');
+        let position = this.IsPresent(file.replace(/\\/g, "/").substring(1), myStrings);
+        if (position <= -1)
+            return true;
+        else
+        {
+            myStrings.splice(position, 1);
+            return this.WriteGitFile(myStrings);
+        }
+    }
     private ReadGitFile(): string
     {
         if (this.IsGitIgnorePresent())

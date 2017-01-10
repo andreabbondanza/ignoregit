@@ -79,15 +79,30 @@ export function activate(context: vscode.ExtensionContext)
         {
             vscode.window.showErrorMessage("No .gitignore file founded, please init the repository");
         }
-
     });
-    let disposableIncludeFile = vscode.commands.registerCommand('ignoregit.includeFile', () =>
+    let disposableIncludeFile = vscode.commands.registerCommand('ignoregit.includeFile', (args: any) =>
     {
-        let ig = new ignoregit.IgnoreGit();
-        let isPresent = ig.IsGitIgnorePresent();
+        let ig: ignoregit.IgnoreGit = new ignoregit.IgnoreGit();
+        let isPresent: boolean = ig.IsGitIgnorePresent();
+        let path: string = args._fsPath;
         if (isPresent)
         {
+            let isDir = fs.lstatSync(path).isDirectory();
+            let type: IgnoreType = IgnoreType.File;
+            if (isDir)
+            {
+                type = IgnoreType.Folder;
+            }
+            path = path.replace(vscode.workspace.rootPath, "");
 
+            if (ig.RemoveFile(path))
+            {
+                vscode.window.showInformationMessage("Done!");
+            }
+            else
+            {
+                vscode.window.showErrorMessage("Something goes wrong");
+            }
         }
         else
         {
@@ -95,19 +110,38 @@ export function activate(context: vscode.ExtensionContext)
         }
 
     });
-    let disposableIncludeExt = vscode.commands.registerCommand('ignoregit.includeExt', () =>
+    let disposableIncludeExt = vscode.commands.registerCommand('ignoregit.includeExt', (args: any) =>
     {
-        let ig = new ignoregit.IgnoreGit();
-        let isPresent = ig.IsGitIgnorePresent();
+        let ig: ignoregit.IgnoreGit = new ignoregit.IgnoreGit();
+        let isPresent: boolean = ig.IsGitIgnorePresent();
+        let path: string = args._fsPath;
         if (isPresent)
         {
+            let isDir = fs.lstatSync(path).isDirectory();
+            let type: IgnoreType = IgnoreType.File;
+            if (!isDir)
+            {
+                type = IgnoreType.Extension;
+                path = path.replace(vscode.workspace.rootPath, "");
+                if (ig.RemoveExtension(path))
+                {
+                    vscode.window.showInformationMessage("Done!");
+                }
+                else
+                {
+                    vscode.window.showErrorMessage("Something goes wrong");
+                }
+            }
+            else
+            {
+                vscode.window.showErrorMessage("Folder doesn't has extension");
+            }
 
         }
         else
         {
             vscode.window.showErrorMessage("No .gitignore file founded, please init the repository");
         }
-
     });
     context.subscriptions.push(disposableIgnoreFile);
     context.subscriptions.push(disposableIgnoreExt);
