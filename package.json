@@ -1,0 +1,32 @@
+{
+    "name": "ignoregit",
+    "displayName": "ignore \"g\" it",
+    "description": "A simple way to update .gitignore from UI",
+    "version": "0.0.1",
+    "publisher": "Andreabbondanza",
+    "engines": {
+        "vscode": "^1.4.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.sayHello"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [{
+            "command": "extension.sayHello",
+            "title": "Hello World"
+        }]
+    },
+    "scripts": {
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^1.8.5",
+        "vscode": "^0.11.0"
+    }
+}
