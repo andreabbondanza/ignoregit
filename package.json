@@ -2,23 +2,58 @@
     "name": "ignoregit",
     "displayName": "ignore \"g\" it",
     "description": "A simple way to update .gitignore from UI",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "publisher": "Andreabbondanza",
     "engines": {
         "vscode": "^1.4.0"
     },
+    "author": {
+        "name": "Andrea Vincenzo Abbondanza",
+        "email": "andreabbondanza.developer@outlook.com",
+        "url": "http://www.andrewdev.eu"
+    },
+    "galleryBanner": {
+        "theme": "light",
+        "color": "#FFFFFF"
+    },
+    "keywords": [
+        "GIT",
+        "gitignore"
+    ],
     "categories": [
         "Other"
     ],
+    "homepage": "https://github.com/andreabbondanza/ignoregit/blob/master/README.md",
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:ignoregit.ignoreFile",
+        "onCommand:ignoregit.ignoreExt"
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
+        "commands": [
+            {
+                "command": "ignoregit.ignoreFile",
+                "title": "GIT: Ignore this file\\folder",
+                "category": "Ignore G it"
+            },
+            {
+                "command": "ignoregit.ignoreExt",
+                "title": "GIT: Ignore this file extension",
+                "category": "Ignore G it"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "ignoregit.ignoreFile",
+                    "group": "Ignore G it"
+                },
+                {
+                    "command": "ignoregit.ignoreExt",
+                    "group": "Ignore G it"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
