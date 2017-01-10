@@ -4,6 +4,11 @@
     "description": "A simple way to update .gitignore from UI",
     "version": "1.0.0",
     "publisher": "Andreabbondanza",
+    "icon": "images/icon.png",
+    "repository": {
+        "url": "https://github.com/andreabbondanza/ignoregit",
+        "type": "Open Source"
+    },
     "engines": {
         "vscode": "^1.4.0"
     },
@@ -26,7 +31,9 @@
     "homepage": "https://github.com/andreabbondanza/ignoregit/blob/master/README.md",
     "activationEvents": [
         "onCommand:ignoregit.ignoreFile",
-        "onCommand:ignoregit.ignoreExt"
+        "onCommand:ignoregit.ignoreExt",
+        "onCommand:ignoregit.includeExt",
+        "onCommand:ignoregit.includeFile"
     ],
     "main": "./out/src/extension",
     "contributes": {
@@ -40,6 +47,16 @@
                 "command": "ignoregit.ignoreExt",
                 "title": "GIT: Ignore this file extension",
                 "category": "Ignore G it"
+            },
+            {
+                "command": "ignoregit.includeFile",
+                "title": "GIT: Remove from gitignore this file\\folder",
+                "category": "Ignore G it"
+            },
+            {
+                "command": "ignoregit.includeExt",
+                "title": "GIT: Remove from gitignore this file extension",
+                "category": "Ignore G it"
             }
         ],
         "menus": {
@@ -50,6 +67,14 @@
                 },
                 {
                     "command": "ignoregit.ignoreExt",
+                    "group": "Ignore G it"
+                },
+                {
+                    "command": "ignoregit.includeExt",
+                    "group": "Ignore G it"
+                },
+                {
+                    "command": "ignoregit.includeFile",
                     "group": "Ignore G it"
                 }
             ]
