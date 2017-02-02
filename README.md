@@ -44,3 +44,6 @@ First release
 This is my first release and my second extension, please for every problem mail me to: andreabbondanza.developer@outlook.com
 
 [Andrea Vincenzo Abbondanza](http://www.andrewdev.eu)
+
+## Donation
+[Help me to grow up, if you want](https://payPal.me/andreabbondanza)
