@@ -9,7 +9,7 @@ In next reviews I'll try to fix this.
 
 ## How to use
 
-![Example](http://andrewdev.eu/wp-content/uploads/2017/01/Cattura.png)
+![Example](https://github.com/andreabbondanza/ignoregit/blob/master/images/Cattura.PNG)
 
 How you can see, it is very simple to use.  Just select the file\folder from the tree and select what you want from the context menu.
 
