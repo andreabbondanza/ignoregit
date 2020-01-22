@@ -11,7 +11,7 @@ In next reviews I'll try to fix this.
 
 ![Example](https://github.com/andreabbondanza/ignoregit/blob/master/images/Cattura.PNG)
 
-How you can see, it is very simple to use.  Just select the file\folder from the tree and select what you want from the context menu.
+As you can see, it is very simple to use.  Just select the file\folder from the tree and select what you want from the context menu.
 
 ## Features
 
